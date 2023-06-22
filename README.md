@@ -46,7 +46,7 @@ qmainwindow_obj.photoviewer_frame.layout().addWidget(qmainwindow_obj.image_viewe
 ``` python
 qmainwindow_obj.image_viewer.set_image(image:numpy.array, need_rgb2bgr=True, fitinview=True)
 ```
-Input parameters:
+#### Input parameters:
     - image: Input image in numpy array format.
     - need_rgb2bgr: Used to replace red and blue channels for RGB images if needed, defaults to False.
     - fitinview: If set as True, the image will be fitted to window, defaults to False.
@@ -57,7 +57,7 @@ Input parameters:
 ``` python
 qmainwindow_obj.image_viewer.set_image(image:numpy.array, need_rgb2bgr=True, fitinview=True)
 ```
-Input parameters:
+#### Input parameters:
     - image: Input image in numpy array format.
     - need_rgb2bgr: Used to replace red and blue channels for RGB images if needed, defaults to False.
     - fitinview: If set as True, the image will be fitted to window, defaults to False.
@@ -75,7 +75,7 @@ Also, it can be applied using any PyQt event such as button clicked:
 ```python
 qmainwindow_obj.image_viewer.zoom(zoom_in=False, zoom_out=False)
 ```
-Input parameters:
+#### Input parameters:
     - zoom_in: Boolean determing to apply zoom in, defaults to False.
     - zoom_out: Boolean determing to apply zoom out, defaults to False
 
@@ -103,7 +103,7 @@ To better Aligning the camera or adjusting FoV, chessboard grid-lines can be use
 ```python
 qmainwindow_obj.image_viewer.change_grid_type(grid_type=photo_viewer.GridLine_Type.none)
 ```
-Input parameters:
+#### Input parameters:
     - grid_type: Type of the grid-lines, defaults to photo_viewer.GridLine_Type.none.
 
 1. Add chessboard grid-line
@@ -127,7 +127,7 @@ Also, when a grid-line is enabled using the function, calling the function again
 ```python
 qmainwindow_obj.image_viewer.save_image(save_directory)
 ```
-Input parameters:
+#### Input parameters:
     - save_directory: Directory to save image of the Photo-Viewer object
 
 ## Remove/clear Photo-Viewer image
