@@ -18,8 +18,8 @@ This module is completely PyQt5-based and it's not possible to be used with othe
     - Numpy
 
 ## Installation
-1-Install dependencies using pip install
-2-clone Photo-Viewer repository
+    1- Install dependencies using pip install
+    2- clone Photo-Viewer repository
 
 ## Documentaion
 Sphinx documents are not available at this moment.
