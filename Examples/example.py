@@ -26,7 +26,7 @@ class PhotoViewer_UI(QtWidgets.QMainWindow):
         self._old_pos = None
         
         # image viewer module
-        self.image_viewer = photo_viewer.PhotoViewer(use_raw_image=True)
+        self.image_viewer = photo_viewer.PhotoViewer(raw_image_path='./icons/no_image.png')
         self.photoviewer_frame.layout().addWidget(self.image_viewer)
 
         #

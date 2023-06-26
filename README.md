@@ -34,11 +34,11 @@ import photo_viewer
 
 2. Create a `Photo-Viewer` object inside a PyQt QMainWindow object and assign it to a frame object:
 ``` python
-qmainwindow_obj.image_viewer = photo_viewer.PhotoViewer(use_raw_image=False, grid_shape=(15,24), need_scrollbar=False)
+qmainwindow_obj.image_viewer = photo_viewer.PhotoViewer(raw_image_path=None, grid_shape=(15,24), need_scrollbar=False)
 qmainwindow_obj.photoviewer_frame.layout().addWidget(qmainwindow_obj.image_viewer)
 ```
 #### Input parameters:
-    - use_raw_image: If set as True, a raw image is set to photo-viewer when photo-viewer is empty or being reset, defaults to False.
+    - raw_image_path: If any image path is enetered, the image is set to photo-viewer when photo-viewer is empty/reset, defaults to None.
     - grid_shape: Tuple containing dims of chess-grid guide lines on image, defaults to (15,24).
     - need_scrollbar: If set as True, scrollbars are shown while zooming on image, defaults to False.
 
