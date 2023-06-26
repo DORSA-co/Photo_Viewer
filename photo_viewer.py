@@ -29,9 +29,6 @@ import numpy as np
 import cv2
 
 
-RAW_IMAGE_PATH = './Icons/no_image.png'
-
-
 
 class GridLine_Type():
     """This class is used to detemine type of grid line shown on photo-viewer object
@@ -70,7 +67,7 @@ def convert_image_to_pixmap(image: np.array, need_rgb2bgr=False) -> QtGui.QPixma
 
 class PhotoViewer(QtWidgets.QGraphicsView):
 
-    def __init__(self, use_raw_image=False, grid_shape=(15,24), need_scrollbar=False):
+    def __init__(self, use_raw_image=False, grid_shape=(15,24), need_scrollbar=False, raw_image_path='./Icons/no_image.png'):
         """This class is used to build the photo-viewewr object to show images, with some options like zooming and panning and ...
 
         :param use_raw_image: If set as True, a raw image is set to photo-viewer when photo-viewer is empty/reset, defaults to False
