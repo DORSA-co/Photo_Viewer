@@ -32,7 +32,7 @@ import os
 
 
 class GridLine_Type():
-    """This class is used to detemine type of grid line shown on photo-viewer object
+    """This class is used to detemine type of grid line shown on Photo-Viewer object
     """
 
     none = 'none'
@@ -41,7 +41,7 @@ class GridLine_Type():
 
 
 def convert_image_to_pixmap(image: np.array, need_rgb2bgr=False) -> QtGui.QPixmap:
-    """This functino is used to convert a numpy array image to PyQt pixmap
+    """This function is used to convert a numpy array image to PyQt pixmap
 
     :param image: Input image in numpy array format
     :type image: np.array
@@ -69,13 +69,13 @@ def convert_image_to_pixmap(image: np.array, need_rgb2bgr=False) -> QtGui.QPixma
 class PhotoViewer(QtWidgets.QGraphicsView):
 
     def __init__(self, raw_image_path=None, grid_shape=(15,24), need_scrollbar=False):
-        """This class is used to build the photo-viewewr object to show images, with some options like zooming and panning and ...
+        """This class is used to build the Photo-Viewer object to show images, with some options like zooming and panning and ...
 
-        :param raw_image_path: If any image path is enetered, the image is set to photo-viewer when photo-viewer is empty/reset, defaults to None
+        :param raw_image_path: If any image path is enetered, the image is set to Photo-Viewer when Photo-Viewer is empty/reset, defaults to None
         :type raw_image_path: _type_, optional
         :param grid_shape: Tuple containing dims of chess grid guide lines, defaults to (15,24)
         :type grid_shape: tuple, optional
-        :param need_scrollbar: If set as True, photo-viewer scrollbars are shown while zooming on image, defaults to False
+        :param need_scrollbar: If set as True, Photo-Viewer scrollbars are shown while zooming on image, defaults to False
         :type need_scrollbar: bool, optional
         """
 
@@ -96,8 +96,8 @@ class PhotoViewer(QtWidgets.QGraphicsView):
         self.setFrameShape(QtWidgets.QFrame.NoFrame)
 
         #
-        self.base_image = None # main image assigned to photo-viewer (without any grid lines)
-        self.empty = True # content of photo-viewer (determining if photoviewer has image or not)
+        self.base_image = None # main image assigned to Photo-Viewer (without any grid lines)
+        self.empty = True # content of Photo-Viewer (determining if photoviewer has image or not)
         try:
             if raw_image_path is None or not os.path.exists(raw_image_path):
                 raise Exception
@@ -105,8 +105,8 @@ class PhotoViewer(QtWidgets.QGraphicsView):
             self.raw_image = cv2.imread(raw_image_path) # raw image
         except:
             self.raw_image = None
-        self.image_width = 0 # width of image on photo-viewer
-        self.image_height = 0 # height of image on photo-viewer
+        self.image_width = 0 # width of image on Photo-Viewer
+        self.image_height = 0 # height of image on Photo-Viewer
         
         # grid line features
         self.grid_shape = grid_shape # shape of grid (x, y), number of horizintal and vertical lines
@@ -114,14 +114,14 @@ class PhotoViewer(QtWidgets.QGraphicsView):
         self.grid_type = GridLine_Type.none # type of grid line on image (none, grid or crosshair)
         self.grid_lines = list() # list to store pyqt grid line items added to the scene
 
-        # reset image of photo-viewer
+        # reset image of Photo-Viewer
         self.clear_image() 
     
 
     def has_image(self) -> bool:
-        """This function is used to determine if photo-viewer object contains image or not
+        """This function is used to determine if Photo-Viewer object contains image or not
 
-        :return: boolean determining if photo-viewer object contains image or not
+        :return: boolean determining if Photo-Viewer object contains image or not
         :rtype: bool
         """
 
@@ -135,7 +135,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
         :type event: _type_
         """
         
-        # check if photo-viewer object conains image
+        # check if Photo-Viewer object conains image
         if self.has_image():
             # zoom in
             if event.angleDelta().y() > 0:
@@ -162,7 +162,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
     
 
     def fit_in_view(self) -> None:
-        """This function is used to fit/strech image on photoviewer window
+        """This function is used to fit/stretch image on photoviewer window
         """
 
         rect = QtCore.QRectF(self.photo.pixmap().rect())
@@ -188,6 +188,9 @@ class PhotoViewer(QtWidgets.QGraphicsView):
         :type zoom_out: bool, optional
         """
 
+        if zoom_in and zoom_out:
+            return
+
         rect = QtCore.QRectF(self.photo.pixmap().rect())
 
         if self.has_image() and not rect.isNull():
@@ -210,7 +213,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
             if zoom_out and scenerect.width()<=viewrect.width() and scenerect.height()<=viewrect.height():
                 self.fit_in_view()
             
-            # update grid lines thickness accoarding to zoom value
+            # update grid lines thickness according to zoom value
             self.update_grid_thickness()
     
 
@@ -228,7 +231,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
 
 
     def set_image(self, image:np.array, need_rgb2bgr=False, fitinview=False) -> None:
-        """This function is used to set a numpy array image to photo-viewer
+        """This function is used to set a numpy array image to Photo-Viewer
 
         :param image: Input image in numpy array format
         :type image: np.array
@@ -247,7 +250,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
         except:
             return
 
-        # set pixmap on photo-viewer
+        # set pixmap on Photo-Viewer
         if not image_pixmap.isNull():
             self.empty = False
             self.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
@@ -266,10 +269,10 @@ class PhotoViewer(QtWidgets.QGraphicsView):
     
 
     def clear_image(self) -> None:
-        """This function is used to clear/remove image of the photo-viewer
+        """This function is used to clear/remove image of the Photo-Viewer
         """
 
-        # set raw image to photo-viewer
+        # set raw image to Photo-Viewer
         if self.raw_image is not None:
             try:
                 self.set_image(image=self.raw_image, fitinview=True)
@@ -294,7 +297,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
     def save_image(self, save_directory:str) -> bool:
         """This function is used to save image
 
-        :param save_directory: Directory to save image of the photo-viewer
+        :param save_directory: Directory to save image of the Photo-Viewer
         :type save_directory: str
         """
 
@@ -308,20 +311,20 @@ class PhotoViewer(QtWidgets.QGraphicsView):
     
 
     def change_grid_type(self, grid_type=GridLine_Type.none) -> None:
-        """This function is used to change guidence grid lines of the photo-viewer. Chess grid, Crosshair or no grid can be selected.
+        """This function is used to change guidance grid lines of the Photo-Viewer. Chess grid, Crosshair or no grid can be selected.
 
         :param grid_type: Type of the gridlines, defaults to GridLine_Type.none
         :type grid_type: _type_, optional
         """
 
-        # remove grid if photo-viewer is empty
+        # remove grid if Photo-Viewer is empty
         if self.image_width==0 or self.image_height==0 or not self.has_image():
             # remove grid if exist (selected before)
             if self.grid_type != GridLine_Type.none:
                 self.grid_type = GridLine_Type.none
                 self.update_grid()
         
-        # enable/disable grid, if input grid type is no-grid or same as current grid on photo-viewer, it will be disabled,
+        # enable/disable grid, if input grid type is no-grid or same as current grid on Photo-Viewer, it will be disabled,
         # otherwise the input grid type will be aplied
         else:
             self.grid_type = GridLine_Type.none if self.grid_type==grid_type else grid_type
@@ -330,7 +333,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
 
     def update_grid(self) -> None:
         """This function is used to update grid when grid type is changed,
-        also when image dimensions of photo-viewer are changed, to fit the grid to new dimensions
+        also when image dimensions of Photo-Viewer are changed, to fit the grid to new dimensions
         """
         
         # remove last grid if enabled
@@ -371,7 +374,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
         viewrect = self.viewport().rect()
         scenerect = self.transform().mapRect(rect)
 
-        # get proper thickness accoarding to value of zoom applied on image
+        # get proper thickness according to value of zoom applied on image
         grid_thick_factor = min(self.image_width, self.image_height)/150
         new_thickness = int(grid_thick_factor * min(viewrect.width()/scenerect.width(), viewrect.height()/scenerect.height()))
         new_thickness = new_thickness if new_thickness > 0 else 1

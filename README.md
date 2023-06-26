@@ -21,7 +21,7 @@ This module is completely PyQt5-based and it's not possible to be used with othe
     1- Install dependencies using pip install
     2- clone Photo-Viewer repository
 
-## Documentaion
+## Documentation
 Sphinx documents are not available at this moment.
 
 ## Quick Start
@@ -38,7 +38,7 @@ qmainwindow_obj.image_viewer = photo_viewer.PhotoViewer(raw_image_path=None, gri
 qmainwindow_obj.photoviewer_frame.layout().addWidget(qmainwindow_obj.image_viewer)
 ```
 #### Input parameters:
-    - raw_image_path: If any image path is enetered, the image is set to photo-viewer when photo-viewer is empty/reset, defaults to None.
+    - raw_image_path: If any image path is enetered, the image is set to Photo-Viewerr when Photo-Viewer is empty/reset, defaults to None.
     - grid_shape: Tuple containing dims of chess-grid guide lines on image, defaults to (15,24).
     - need_scrollbar: If set as True, scrollbars are shown while zooming on image, defaults to False.
 
@@ -53,7 +53,7 @@ qmainwindow_obj.image_viewer.set_image(image:numpy.array, need_rgb2bgr=True, fit
 
 # Main functions
 
-## Add an iamge
+## Add an image
 ``` python
 qmainwindow_obj.image_viewer.set_image(image:numpy.array, need_rgb2bgr=True, fitinview=True)
 ```
@@ -76,8 +76,8 @@ Also, it can be applied using any PyQt event such as button clicked:
 qmainwindow_obj.image_viewer.zoom(zoom_in=False, zoom_out=False)
 ```
 #### Input parameters:
-    - zoom_in: Boolean determing to apply zoom in, defaults to False.
-    - zoom_out: Boolean determing to apply zoom out, defaults to False
+    - zoom_in: Boolean determining to apply zoom in, defaults to False.
+    - zoom_out: Boolean determining to apply zoom out, defaults to False
 
 1. Zooming in
 ```python
@@ -89,13 +89,13 @@ qmainwindow_obj.image_viewer.zoom(zoom_in=True)
 qmainwindow_obj.image_viewer.zoom(zoom_out=True)
 ```
 
-## Fit/strech image to Photo-Viewer window
+## Fit/stretch image to Photo-Viewer window
 ```python
 qmainwindow_obj.image_viewer.fit_in_view()
 ```
 
 ## Add/remove grid-lines on image
-To better Aligning the camera or adjusting FoV, chessboard grid-lines can be used.
+To better aligning the camera or adjusting FoV, chessboard grid-lines can be used.
 2 type of grid-lines are available to use:
     - Chessboard grid-line
     - Crosshair grid-line
