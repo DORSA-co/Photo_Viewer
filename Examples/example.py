@@ -46,7 +46,7 @@ class PhotoViewer_UI(QtWidgets.QMainWindow):
         self.fitinview_toolbar_pushButton.clicked.connect(partial(self.image_viewer.fit_in_view))
         self.crosshair_toolbar_pushButton.clicked.connect(partial(lambda: self.image_viewer.change_grid_type(grid_type=photo_viewer.GridLine_Type.crosshair)))
         self.gridline_toolbar_pushButton.clicked.connect(partial(lambda: self.image_viewer.change_grid_type(grid_type=photo_viewer.GridLine_Type.gridline)))
-        # self.pushButton.clicked.connect(partial(self.image_viewer.test))
+        self.gridcolor_toolbar_comboBox.currentIndexChanged.connect(partial(lambda: self.change_grid_color(color=self.gridcolor_toolbar_comboBox.currentText())))
         
 
     def mousePressEvent(self, event):
@@ -199,6 +199,31 @@ class PhotoViewer_UI(QtWidgets.QMainWindow):
                 self.show_alert_window(title='Message', message='Saved image successfully.', need_confirm=False, level=0)
             else:
                 self.show_alert_window(title='Error', message='Failed to save image.', need_confirm=False, level=2)
+    
+
+    def change_grid_color(self, color):
+        """_summary_
+        """
+
+        if color == 'White':
+            self.image_viewer.change_grid_color(grid_color=photo_viewer.GridLine_Color.white)
+
+        elif color == 'Black':
+            self.image_viewer.change_grid_color(grid_color=photo_viewer.GridLine_Color.black)
+
+        elif color == 'Red':
+            self.image_viewer.change_grid_color(grid_color=photo_viewer.GridLine_Color.red)
+
+        elif color == 'Green':
+            self.image_viewer.change_grid_color(grid_color=photo_viewer.GridLine_Color.green)
+
+        elif color == 'Blue':
+            self.image_viewer.change_grid_color(grid_color=photo_viewer.GridLine_Color.blue)
+        
+        else:
+            return
+
+
 
 
     

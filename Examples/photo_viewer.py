@@ -398,7 +398,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
                 item.setPen(QtGui.QPen(self.grid_color, new_thickness))
     
 
-    def change_grid_color(self, grid_color=GridLine_Color.white):
+    def change_grid_color(self, grid_color=QtCore.Qt.white):
         """This function is used to change grid-line color
 
         :param grid_color: _description_, defaults to QtCore.Qt.white

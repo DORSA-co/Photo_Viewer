@@ -123,6 +123,19 @@ qmainwindow_obj.image_viewer.change_grid_type(grid_type=photo_viewer.GridLine_Ty
 
 Also, when a grid-line is enabled using the function, calling the function again will disable it.
 
+## Change grid-line shape and color
+To change grid-line properties including color and shape, the following functions can be used
+
+1. Change grid color
+```python
+qmainwindow_obj.image_viewer.change_grid_color(self, grid_color=photo_viewer.GridLine_Color.white)
+```
+
+2. Change grid shape
+```python
+qmainwindow_obj.image_viewer.change_grid_shape(self, grid_shape=(15,24))
+```
+
 ## Save Photo-Viewer image
 ```python
 qmainwindow_obj.image_viewer.save_image(save_directory)
