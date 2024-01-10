@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>552</height>
+    <width>740</width>
+    <height>570</height>
    </rect>
   </property>
   <property name="cursor">
@@ -177,8 +177,8 @@ QPushButton:hover{
      <widget class="QFrame" name="main">
       <property name="minimumSize">
        <size>
-        <width>800</width>
-        <height>500</height>
+        <width>0</width>
+        <height>0</height>
        </size>
       </property>
       <property name="maximumSize">

@@ -174,8 +174,11 @@ class PhotoViewer(QtWidgets.QGraphicsView):
             self.zoom(zoom_out=True)
     
 
-    def fit_in_view(self) -> None:
+    def fit_in_view(self, ignore_has_image: bool=False) -> None:
         """This function is used to fit/stretch image on photoviewer window
+
+        :param ignore_has_image: ignore that photo-viewer, defaults to False
+        :type ignore_has_image: bool, optional
         """
 
         rect = QtCore.QRectF(self.photo.pixmap().rect())
@@ -183,7 +186,7 @@ class PhotoViewer(QtWidgets.QGraphicsView):
         if not rect.isNull():
             self.setSceneRect(rect)
 
-            if self.has_image():
+            if self.has_image() or ignore_has_image:
                 unity = self.transform().mapRect(QtCore.QRectF(0, 0, 1, 1))
                 self.scale(1 / unity.width(), 1 / unity.height())
                 viewrect = self.viewport().rect()
@@ -236,11 +239,12 @@ class PhotoViewer(QtWidgets.QGraphicsView):
 
         rect = QtCore.QRectF(self.photo.pixmap().rect())
 
-        if self.has_image() and not rect.isNull():
+        # if self.has_image() and not rect.isNull():
+        if not rect.isNull():
             viewrect = self.viewport().rect()
             scenerect = self.transform().mapRect(rect)
-            if scenerect.width()<=viewrect.width() and scenerect.height()<=viewrect.height():
-                self.fit_in_view()
+            # if scenerect.width()<=viewrect.width() and scenerect.height()<=viewrect.height():
+            self.fit_in_view(ignore_has_image=True)
 
 
     def set_image(self, image:np.array, need_rgb2bgr=False, fitinview=False) -> None:
@@ -265,11 +269,11 @@ class PhotoViewer(QtWidgets.QGraphicsView):
 
         # set pixmap on Photo-Viewer
         if not image_pixmap.isNull():
-            self.empty = False
             self.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
             self.photo.setPixmap(image_pixmap)
-            if fitinview:
-                self.fit_in_view()
+            if fitinview or self.empty:
+                self.fit_in_view(ignore_has_image=True)
+            self.empty = False
             
             # set flag to update grid if image dimentions are changed
             if self.image_width != self.photo.pixmap().width() or self.image_height != self.photo.pixmap().height():

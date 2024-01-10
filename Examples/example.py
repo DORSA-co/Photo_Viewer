@@ -94,6 +94,7 @@ class PhotoViewer_UI(QtWidgets.QMainWindow):
 
         if not self.window_is_open:
             self.show()
+            self.image_viewer.fit_on_window_resize() 
             self.window_is_open = True
 
 
@@ -178,7 +179,7 @@ class PhotoViewer_UI(QtWidgets.QMainWindow):
             self.show_alert_window(title='Error', message='Failed to load image, please ensure right image format.', need_confirm=False, level=2)
         
         # set image on image-viewer
-        self.image_viewer.set_image(image=image, need_rgb2bgr=True, fitinview=True)
+        self.image_viewer.set_image(image=image, need_rgb2bgr=True, fitinview=False)
     
 
     def save_image(self):
